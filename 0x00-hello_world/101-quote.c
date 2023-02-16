@@ -1,9 +1,10 @@
 #include <stdio.h>
 #include <unistd.h>
 /**
- * * Description: main - Prints a C program that prints a line to the standard error
+ * * Description: main - Prints a C program that prints
+ * a line to the standard error
  *
- * * Return 1 if success
+ * * Return: 1 if success
  */
 int main(void)
 {
