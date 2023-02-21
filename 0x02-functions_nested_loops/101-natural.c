@@ -1,4 +1,4 @@
-#include "main.h"
+#include <stdio.h>
 #include <stdlib.h>
 /**
  * main - Entry point
@@ -14,7 +14,7 @@ int main(void)
 
 	while (c < 1024)
 	{
-		if (c % 3 == 0 || c 5 5 == 0)
+		if (c % 3 == 0 || c % 5 == 0)
 		{
 			sum += c;
 		}
