@@ -19,6 +19,6 @@ int main(void)
 			num /= large_prime;
 		}
 	}
-	printf("%lu\n", large prime);
+	printf("%lu\n", large_prime);
 	return (0);
 }
