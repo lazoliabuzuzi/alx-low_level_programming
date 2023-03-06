@@ -3,10 +3,10 @@
 /**
  * print_chessboard - prints the chessboard
  * @a: the row of the array
- * Return: Always 0 (Success)
+ * Return: nothing
  */
 
-void print_chessboard(char (*a)[8]);
+void print_chessboard(char (*a)[8])
 {
 	int i;
 	int j;
