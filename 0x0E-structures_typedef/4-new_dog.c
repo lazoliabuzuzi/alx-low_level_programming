@@ -39,7 +39,7 @@ dog_t *new_dog(char *name, float age, char *owner)
 
 		if (max_dog->owner == NULL)
 		{
-			free(max_dog->owner);
+			free(max_dog->name);
 			free(max_dog);
 			return (NULL);
 		}
