@@ -28,11 +28,11 @@ int main(int argc, char *argv[])
 		exit(2);
 	}
 
-	opcode = *(unsigned char *)address;
-
 	for (i = 0; i < bytes; i++)
 	{
-		printf("%02x", opcode);
+		opcode = *(unsigned char *)address;
+		printf("%.2x", opcode);
+		address++;
 	}
 	printf("\n");
 
