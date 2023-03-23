@@ -6,51 +6,46 @@
  * print_all - prints anything
  * c = char, i = int, f = float, s = char *
  * @format: list of arg types
- * Return: if the string is NULL, print (nil) instead
+ * Return: 0. If the string is NULL, print (nil) instead
  */
 void print_all(const char * const format, ...)
 {
-	char c;
-	int i;
-	float f;
-	char *s;
-	int count = 0;
-	va_list args;
+	va_list valist;
+	int n = 0, i = 0;
+	char *sep = ", ";
+	char *str;
 
-	va_start(args, format);
+	va_start(valist, format);
 
-	while (format[count])
+	while (format && format[i])
+		i++;
+
+	while (format && format[n])
 	{
-		switch (format[count])
+		if (n  == (i - 1))
 		{
-			case 'c':
-				c = va_arg(args, int);
-				printf("%c", c);
-				break;
-			case 'i':
-				i = va_arg(args, int);
-				printf("%d", i);
-				break;
-			case 'f':
-				f = va_arg(args, double);
-				printf("%f", f);
-				break;
-			case 's':
-				s = va_arg(args, char *);
-				if (s == NULL)
-				{
-					printf("(nil)");
-				}
-				else
-				{
-					printf("%s", s);
-				}
-				break;
-			default:
-				break;
+			sep = "";
 		}
-		count++;
+		switch (format[n])
+		{
+		case 'c':
+			printf("%c%s", va_arg(valist, int), sep);
+			break;
+		case 'i':
+			printf("%d%s", va_arg(valist, int), sep);
+			break;
+		case 'f':
+			printf("%f%s", va_arg(valist, double), sep);
+			break;
+		case 's':
+			str = va_arg(valist, char *);
+			if (str == NULL)
+				str = "(nil)";
+			printf("%s%s", str, sep);
+			break;
+		}
+		n++;
 	}
-	va_end(args);
 	printf("\n");
+	va_end(valist);
 }
