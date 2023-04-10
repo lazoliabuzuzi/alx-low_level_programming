@@ -1,14 +1,12 @@
 #include "main.h"
 
 #define BUFFER_SIZE 1024
-
 /**
  * main - copies content of one file to another
  * @argc: argument count
  * @argv: argument vector
  * Return: 0 (Success)
  */
-
 int main(int argc, char *argv[])
 {
 	int from, to, rd, wr, cl;
@@ -31,10 +29,9 @@ int main(int argc, char *argv[])
 		dprintf(STDERR_FILENO, "Can't write to %s\n", argv[2]);
 		exit(99);
 	}
-	while ((rd = read(from, buffer, BUFFER_SIZE)) > 0)
+	while ((rd = read(from, buffer, 1024)) > 0)
 	{
 		wr = write(to, buffer, rd);
-
 		if (wr == -1)
 		{
 			dprintf(STDERR_FILENO, "Error: Can't write to %s\n", argv[2]);
