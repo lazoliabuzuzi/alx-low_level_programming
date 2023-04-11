@@ -9,7 +9,7 @@
  */
 int main(int argc, char *argv[])
 {
-	int from, to, rd, cl;
+	int from, to, rd, clfr, clto;
 	char buffer[BUFFER_SIZE];
 
 	if (argc != 3)
@@ -23,8 +23,8 @@ int main(int argc, char *argv[])
 		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", argv[1]);
 		exit(98);
 	}
-	to = open(argv[2], O_WRONLY | O_CREAT | O_TRUNC, S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH);
-	while ((rd = read(from, buffer, 1024)) > 0)
+	to = open(argv[2], O_WRONLY | O_CREAT | O_TRUNC, 0644);
+	while ((rd = read(from, buffer, BUFFER_SIZE)) > 0)
 		if (to == -1 || (write(to, buffer, rd) != rd))
 		{
 			dprintf(STDERR_FILENO, "Can't write to %s\n", argv[2]);
@@ -35,14 +35,14 @@ int main(int argc, char *argv[])
 		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", argv[1]);
 		exit(98);
 	}
-	cl = close(from);
-	if (cl == -1)
+	clfr = close(from);
+	if (clfr == -1)
 	{
 		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", from);
 		exit(100);
 	}
-	cl = close(to);
-	if (cl == -1)
+	clto = close(to);
+	if (clto == -1)
 	{
 		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", to);
 		exit(100);
