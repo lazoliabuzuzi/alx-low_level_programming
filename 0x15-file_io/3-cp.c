@@ -10,7 +10,7 @@
 int main(int argc, char *argv[])
 {
 	int from, to, rd, clfr, clto;
-	char buffer[BUFFER_SIZE];
+	char buffer[1024];
 
 	if (argc != 3)
 	{
@@ -26,7 +26,7 @@ int main(int argc, char *argv[])
 	{
 		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", argv[2]);
 		exit(99); }
-	while ((rd = read(from, buffer, BUFFER_SIZE)) > 0)
+	while ((rd = read(from, buffer, 1024)) > 0)
 	{
 		if (write(to, buffer, rd) != rd)
 		{
