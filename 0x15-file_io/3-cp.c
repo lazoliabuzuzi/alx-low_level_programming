@@ -24,12 +24,19 @@ int main(int argc, char *argv[])
 		exit(98);
 	}
 	to = open(argv[2], O_WRONLY | O_CREAT | O_TRUNC, 0644);
+	if (to == -1)
+	{
+		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", argv[2]);
+		exit(99);
+	}
 	while ((rd = read(from, buffer, BUFFER_SIZE)) > 0)
-		if (to == -1 || (write(to, buffer, rd) != rd))
+	{
+		if (write(to, buffer, rd) != rd)
 		{
 			dprintf(STDERR_FILENO, "Error: Can't write to %s\n", argv[2]);
 			exit(99);
 		}
+	}
 	if (rd == -1)
 	{
 		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", argv[1]);
