@@ -12,5 +12,4 @@ for a in range(999, 99, -1):
         if prod > largest_palindrome and is_palindrome(prod):
             largest_palindrome = prod
 
-with open("102-result", "w") as file:
-    file.write(str(largest_palindrome))
+print(largest_palindrome)
